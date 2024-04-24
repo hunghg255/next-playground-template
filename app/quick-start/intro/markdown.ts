@@ -1,11 +1,11 @@
 export const markdown = `
 # Creating your first atom
 
-Jotai atoms are small isolated pieces of state. Ideally, one atom contains very small data. 
+Jotai atoms are small isolated pieces of state. Ideally, one atom contains very small data.
 Here's how you create your first atom.
 
 ~~~js
-import { atom } from 'jotai';
+import { atom } from 'jotai'; //
 const counter = atom(0);
 ~~~
 
@@ -23,4 +23,21 @@ const friendObj = atom({ name: "John", online: false });
 const cities = atom([ "Tokoyo", "Kyoto", "Osaka" ]);
 const nestedObj = atom({ friend1: { name: "John", age: 18 } });
 ~~~
+
+
+~~~js
+console.log('hewwo') // [!code --]
+console.log('hello') // [!code ++]
+console.log('Highlighted') // [!code highlight]
+console.error('Error') // [!code error]
+console.warn('Warning') // [!code warning]
+~~~
+
+
+~~~js
+console.log('Not focused');
+console.log('Focused') // [!code focus]
+console.log('Not focused');
+~~~
+
 `;

@@ -1,21 +1,57 @@
 "use client";
 
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import Markdown from "react-markdown";
 import { markdown } from "./markdown";
 import files from "./code";
 import setupStyles from "./styles";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "../../vscDarkPlus";
 import Link from "next/link";
-
 import { themeAtom } from "../Header";
-import { useAtom } from 'jotai';
+import { useAtom } from "jotai";
+import { getHighlighter } from "shiki";
+import {
+  transformerNotationFocus,
+  transformerNotationErrorLevel,
+  transformerNotationHighlight,
+  transformerNotationDiff,
+  transformerRenderWhitespace,
+  transformerNotationWordHighlight,
+  // ...
+} from "@shikijs/transformers";
 
+const SyntaxHighlighter = ({ children }: any) => {
+  const [code, setcode] = useState("");
+
+  useLayoutEffect(() => {
+    (async () => {
+      const highlighter = await getHighlighter({
+        themes: ["one-dark-pro"],
+        langs: ["javascript", "css", "html", "typescript"],
+      });
+
+      const code = highlighter.codeToHtml(children, {
+        theme: "one-dark-pro",
+        lang: "typescript",
+        transformers: [
+          transformerNotationDiff(),
+          transformerNotationHighlight(),
+          transformerNotationFocus(),
+          transformerNotationErrorLevel(),
+          transformerRenderWhitespace(),
+          transformerNotationWordHighlight(),
+        ],
+      });
+      setcode(code);
+    })();
+  }, []);
+
+  return <div dangerouslySetInnerHTML={{ __html: code }}></div>;
+};
 
 function Page() {
-  const [theme] = useAtom(themeAtom)
+  const [theme] = useAtom(themeAtom);
   return (
     <div className={`${theme} lesson-cont`}>
       <div className="mark-cont">
@@ -31,7 +67,7 @@ function Page() {
                   PreTag="div"
                   {...props}
                 >
-                  {String(children).replace(/\n$/, "")}
+                  {String(children)}
                 </SyntaxHighlighter>
               ) : (
                 <code className={className} {...props}>
@@ -45,14 +81,17 @@ function Page() {
         </Markdown>
         <div className="pg-link">
           <div></div>
-          <Link className={`next-link next-link-${theme}`} href="/quick-start/theme-setting">
+          <Link
+            className={`next-link next-link-${theme}`}
+            href="/quick-start/theme-setting"
+          >
             Next {"->"}
           </Link>
         </div>
       </div>
 
       <Sandpack
-        theme={theme==='light'? 'light': 'dark'}
+        theme={theme === "light" ? "light" : "dark"}
         template="react"
         files={{
           ...files,
