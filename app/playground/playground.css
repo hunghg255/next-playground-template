@@ -1,0 +1,119 @@
+.sp-c-bNbSGz {
+    font-size: 15px;
+}
+
+.sp-layout {
+    border-radius: 0px !important;
+}
+
+.sp-close-button {
+    margin-bottom: 8px;
+}
+
+.sp-file-explorer {
+    overflow: scroll !important;
+}
+
+.left-dark-btn {
+    background: black !important;
+    color: white;
+}
+
+.dark-mid-btn {
+    background: black !important;
+    color: white;
+}
+
+.dark-mid-btn:hover {
+    background: #0d3532 !important;
+}
+
+.left-dark-btn:hover {
+    background: #0d3532 !important;
+}
+
+.newFile-light {
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    background: white;
+    height: 55px;
+    width: 70px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.newFile-dark {
+    background: black;
+    color: white !important;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playground-btn {
+    font-size: 15px;
+    padding: 5px;
+    background: transparent;
+    font-weight: 300;
+    height: 35px;
+    letter-spacing: 0.2px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.playground-mid {
+    margin-left: -130px;
+}
+
+.playground-toogle {
+    margin-right: 20px;
+}
+
+.playground-btn:hover {
+    background: #dbe9fe;
+    transition: 0.3s;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    height: inherit;
+}
+
+.btn:hover {
+    background: black;
+    color: white;
+    transition: 0.3s;
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+}
+
+@media screen and (min-width: 900px) {
+    .sp-c-ctabmA {
+        overflow-y: scroll;
+    }
+    .sp-stack, .sp-file-explorer {
+        height:calc(100vh - 55px) !important;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .sp-c-ctabmA > .sp-file-explorer {
+        height: 100vh;
+        overflow-y: scroll;
+    }
+}
