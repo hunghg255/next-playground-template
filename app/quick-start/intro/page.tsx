@@ -20,6 +20,7 @@ import {
   transformerNotationWordHighlight,
   // ...
 } from "@shikijs/transformers";
+import lucy from "shikiji-themes/themes/lucy.js";
 
 const SyntaxHighlighter = ({ children }: any) => {
   const [code, setcode] = useState("");
@@ -27,12 +28,14 @@ const SyntaxHighlighter = ({ children }: any) => {
   useLayoutEffect(() => {
     (async () => {
       const highlighter = await getHighlighter({
-        themes: ["one-dark-pro"],
+        themes: [],
         langs: ["javascript", "css", "html", "typescript"],
       });
 
+      await highlighter.loadTheme(lucy as any);
+
       const code = highlighter.codeToHtml(children, {
-        theme: "one-dark-pro",
+        theme: "lucy",
         lang: "typescript",
         transformers: [
           transformerNotationDiff(),
